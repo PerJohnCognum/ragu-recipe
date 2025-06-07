@@ -11,7 +11,7 @@
       Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     background: #fefefe;
     color: #222;
-    margin: 1rem;
+    margin: 1rem auto;
     line-height: 1.5;
     max-width: 720px;
   }
@@ -86,7 +86,6 @@
     details[open] > summary::after {
       content: '';
     }
-    /* Show checkboxes, all enabled but unchecked is hard; so show real checkboxes with checked state */
     input[type="checkbox"] {
       visibility: visible;
       pointer-events: none;
@@ -175,52 +174,4 @@
     <li><strong>Final Check:</strong></li>
     <li><label><input type="checkbox" id="final1" /> Meat breaks into fibrous strands</label></li>
     <li><label><input type="checkbox" id="final2" /> Sauce coats spoon but isn't dry</label></li>
-    <li><label><input type="checkbox" id="final3" /> Rich, deep color</label></li>
-    <li><label><input type="checkbox" id="final4" /> No raw wine taste</label></li>
-
-    <li><strong>Serving Notes:</strong></li>
-    <li>Serve with fresh tagliatelle or pappardelle</li>
-    <li>Top with grated Parmigiano-Reggiano</li>
-    <li>Can be made 1-2 days ahead (improves flavor)</li>
-    <li>Freezes well for up to 3 months</li>
-  </ol>
-</details>
-
-<details id="links-details">
-  <summary>Reference Sources</summary>
-  <ul class="no-bullets" id="links-list">
-    <li><label><input type="checkbox" id="link1" /> <a href="https://www.greatitalianchefs.com/recipes/authentic-bolognese-recipe" target="_blank" rel="noopener noreferrer">Great Italian Chefs - Authentic Bolognese Recipe</a></label></li>
-    <li><label><input type="checkbox" id="link2" /> <a href="https://pastagrammar.com/traditional-ragu/" target="_blank" rel="noopener noreferrer">Pasta Grammar - Traditional Ragù</a></label></li>
-    <li><label><input type="checkbox" id="link3" /> <a href="https://anitalianinmykitchen.com/bolognese-sauce/" target="_blank" rel="noopener noreferrer">An Italian in My Kitchen - Bolognese Sauce</a></label></li>
-    <li><label><input type="checkbox" id="link4" /> <a href="https://www.matprat.no/ord-og-begreper/kjott/" target="_blank" rel="noopener noreferrer">Matprat.no - Norwegian-English Meat Dictionary</a></label></li>
-  </ul>
-</details>
-
-<button id="reset-btn" type="button" aria-label="Reset all checkboxes and collapse states">Reset Checkboxes &amp; Collapse</button>
-
-<script>
-  (function(){
-    const STORAGE_KEY = 'raguChecklistState_v1';
-
-    // List all checkbox ids in the page, grouped by section for clarity
-    const checkboxIds = [
-      'meat1','meat2','meat3',
-      'veg1','veg2','veg3','veg4','veg5','veg6','veg7',
-      'pantry1','pantry2','pantry3','pantry4','pantry5','pantry6','pantry7','pantry8',
-      'prep1','prep2','prep3','prep4','prep5',
-      'cook1','cook2','cook3','cook4','cook5','cook6','cook7','cook8','cook9','cook10','cook11','cook12','cook13','cook14','cook15','cook16',
-      'final1','final2','final3','final4',
-      'link1','link2','link3','link4'
-    ];
-
-    // Save function: saves checked states and open states of details
-    function saveState() {
-      const state = {
-        checkboxes: {},
-        details: {}
-      };
-      checkboxIds.forEach(id => {
-        const cb = document.getElementById(id);
-        if(cb) state.checkboxes
-
-                        
+    <li><label><input type="checkbox" id="
