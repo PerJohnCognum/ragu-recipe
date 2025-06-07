@@ -5,6 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Italian Ragù Recipe</title>
 <style>
+  /* Auto theme based on user preference */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: #121212;
+      color: #ddd;
+    }
+    summary {
+      color: #eee;
+    }
+    button {
+      background: #222;
+      border-color: #666;
+      color: #ddd;
+    }
+    button:hover {
+      background: #333;
+    }
+    a {
+      color: #6ca0ff;
+    }
+  }
+  @media (prefers-color-scheme: light) {
+    body {
+      background: white;
+      color: #222;
+    }
+    summary {
+      color: #111;
+    }
+    button {
+      background: white;
+      border-color: #333;
+      color: #111;
+    }
+    button:hover {
+      background: #eee;
+    }
+    a {
+      color: #0366d6;
+    }
+  }
+
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -15,6 +57,7 @@
   }
   h1 {
     text-align: center;
+    margin-bottom: 2rem;
   }
   details {
     margin-bottom: 1.5rem;
@@ -24,9 +67,8 @@
     cursor: pointer;
     user-select: none;
   }
-  ul {
-    list-style: none;
-    padding-left: 0;
+  ul, ol {
+    padding-left: 1.3rem;
   }
   li {
     margin: 0.25rem 0;
@@ -40,17 +82,35 @@
   }
   button {
     display: block;
-    margin: 2rem auto;
+    margin: 2rem auto 4rem auto;
     padding: 0.5rem 1.2rem;
     font-size: 1rem;
     cursor: pointer;
-    border: 1.5px solid #333;
+    border: 1.5px solid;
     border-radius: 5px;
-    background: white;
     transition: background 0.2s ease;
   }
-  button:hover {
-    background: #eee;
+
+  /* Print-friendly CSS */
+  @media print {
+    button,
+    input[type="checkbox"],
+    summary {
+      display: none !important;
+    }
+    details {
+      border: none;
+      margin-bottom: 0;
+    }
+    body {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      color: black !important;
+      background: white !important;
+      font-size: 12pt;
+      line-height: 1.3;
+    }
   }
 </style>
 </head>
@@ -61,44 +121,47 @@
 <!-- Shopping List: open by default -->
 <details open id="shoppingList">
   <summary>Shopping List</summary>
+  
   <h3>Meat (choose one combination):</h3>
   <ul>
-    <li><label><input type="checkbox" />1.5kg Svinebog (pork shoulder) + 1kg Høyrygg (beef chuck)</label></li>
-    <li><label><input type="checkbox" />2kg Bibringe (beef short ribs)</label></li>
-    <li><label><input type="checkbox" />1.2kg Svinebog + 800g Lammebog (lamb shoulder)</label></li>
+    <li><label><input type="checkbox" data-id="meat1" />1.5kg Svinebog (pork shoulder) + 1kg Høyrygg (beef chuck)</label></li>
+    <li><label><input type="checkbox" data-id="meat2" />2kg Bibringe (beef short ribs)</label></li>
+    <li><label><input type="checkbox" data-id="meat3" />1.2kg Svinebog + 800g Lammebog (lamb shoulder)</label></li>
   </ul>
+
   <h3>Vegetables & Aromatics:</h3>
   <ul>
-    <li><label><input type="checkbox" />3 large onions (450g)</label></li>
-    <li><label><input type="checkbox" />4 large carrots (400g)</label></li>
-    <li><label><input type="checkbox" />4 stalks celery (200g)</label></li>
-    <li><label><input type="checkbox" />200g pancetta or bacon</label></li>
-    <li><label><input type="checkbox" />1 head garlic</label></li>
-    <li><label><input type="checkbox" />Fresh bay leaves (6-8 leaves)</label></li>
-    <li><label><input type="checkbox" />Fresh thyme or rosemary</label></li>
+    <li><label><input type="checkbox" data-id="veg1" />3 large onions (450g)</label></li>
+    <li><label><input type="checkbox" data-id="veg2" />4 large carrots (400g)</label></li>
+    <li><label><input type="checkbox" data-id="veg3" />4 stalks celery (200g)</label></li>
+    <li><label><input type="checkbox" data-id="veg4" />200g pancetta or bacon</label></li>
+    <li><label><input type="checkbox" data-id="veg5" />1 head garlic</label></li>
+    <li><label><input type="checkbox" data-id="veg6" />Fresh bay leaves (6-8 leaves)</label></li>
+    <li><label><input type="checkbox" data-id="veg7" />Fresh thyme or rosemary</label></li>
   </ul>
+
   <h3>Pantry Items:</h3>
   <ul>
-    <li><label><input type="checkbox" />200ml whole milk</label></li>
-    <li><label><input type="checkbox" />400ml dry white wine</label></li>
-    <li><label><input type="checkbox" />800ml beef or vegetable stock</label></li>
-    <li><label><input type="checkbox" />800g canned San Marzano tomatoes (or good quality whole tomatoes)</label></li>
-    <li><label><input type="checkbox" />6 tbsp tomato paste (concentrated)</label></li>
+    <li><label><input type="checkbox" data-id="pantry1" />200ml whole milk</label></li>
+    <li><label><input type="checkbox" data-id="pantry2" />400ml dry white wine</label></li>
+    <li><label><input type="checkbox" data-id="pantry3" />800ml beef or vegetable stock</label></li>
+    <li><label><input type="checkbox" data-id="pantry4" />800g canned San Marzano tomatoes (or good quality whole tomatoes)</label></li>
+    <li><label><input type="checkbox" data-id="pantry5" />6 tbsp tomato paste (concentrated)</label></li>
   </ul>
 </details>
 
-<!-- Instructions: collapsed by default -->
+<!-- Instructions: collapsed by default, with checkboxes -->
 <details id="instructions">
   <summary>Instructions</summary>
   <ol>
-    <li>Finely dice onions, carrots, celery, pancetta, and garlic.</li>
-    <li>Brown the meat in batches in a large pot over medium heat; set aside.</li>
-    <li>Sauté the diced vegetables and pancetta until soft and golden.</li>
-    <li>Return meat to pot, add tomato paste, and cook for a few minutes.</li>
-    <li>Pour in white wine and let reduce by half.</li>
-    <li>Add canned tomatoes, bay leaves, and herbs; simmer gently for 3-4 hours.</li>
-    <li>Stir in whole milk near the end; adjust seasoning.</li>
-    <li>Serve over fresh pasta or polenta.</li>
+    <li><label><input type="checkbox" data-id="step1" />Finely dice onions, carrots, celery, pancetta, and garlic.</label></li>
+    <li><label><input type="checkbox" data-id="step2" />Brown the meat in batches in a large pot over medium heat; set aside.</label></li>
+    <li><label><input type="checkbox" data-id="step3" />Sauté the diced vegetables and pancetta until soft and golden.</label></li>
+    <li><label><input type="checkbox" data-id="step4" />Return meat to pot, add tomato paste, and cook for a few minutes.</label></li>
+    <li><label><input type="checkbox" data-id="step5" />Pour in white wine and let reduce by half.</label></li>
+    <li><label><input type="checkbox" data-id="step6" />Add canned tomatoes, bay leaves, and herbs; simmer gently for 3-4 hours.</label></li>
+    <li><label><input type="checkbox" data-id="step7" />Stir in whole milk near the end; adjust seasoning.</label></li>
+    <li><label><input type="checkbox" data-id="step8" />Serve over fresh pasta or polenta.</label></li>
   </ol>
 </details>
 
@@ -108,14 +171,15 @@
   <ul>
     <li><a href="https://www.greatitalianchefs.com/recipes/bolognese-recipe" target="_blank" rel="noopener noreferrer">Great Italian Chefs - Bolognese</a></li>
     <li><a href="https://www.seriouseats.com/italian-ragu-bolognese-recipe" target="_blank" rel="noopener noreferrer">Serious Eats - Italian Ragù</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Ragù" target="_blank" rel="noopener noreferrer">Wikipedia - Ragù</a></li>
+    <li><a href="https://www.lacucinaitaliana.com/recipe/italian-classics/bolognese-sauce" target="_blank" rel="noopener noreferrer">La Cucina Italiana - Bolognese</a></li>
   </ul>
 </details>
 
 <!-- Reset button -->
-<button id="resetBtn" type="button">Reset All</button>
+<button id="resetBtn" type="button" aria-label="Reset all checkboxes and collapsibles to initial state">Reset All</button>
 
 <script>
-  // Save initial state for reset:
   const resetBtn = document.getElementById('resetBtn');
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   const detailsElements = document.querySelectorAll('details');
@@ -123,13 +187,14 @@
   // Store initial open state of each <details>
   const detailsInitialState = Array.from(detailsElements).map(d => d.open);
 
-  resetBtn.addEventListener('click', () => {
-    // Uncheck all checkboxes
-    checkboxes.forEach(cb => (cb.checked = false));
-    // Reset <details> open state
-    detailsElements.forEach((d, i) => (d.open = detailsInitialState[i]));
-  });
-</script>
-
-</body>
-</html>
+  // Load checkbox & details states from localStorage
+  function loadState() {
+    checkboxes.forEach(cb => {
+      const saved = localStorage.getItem('checkbox-' + cb.dataset.id);
+      cb.checked = saved === 'true';
+    });
+    detailsElements.forEach((d, i) => {
+      const saved = localStorage.getItem('details-' + d.id);
+      if (saved !== null) {
+        d.open = saved === 'true';
+      } else
