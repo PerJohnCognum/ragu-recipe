@@ -1,22 +1,181 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="auto">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Italian Ragù Recipe</title>
   <style>
+    :root {
+      color-scheme: light dark;
+    }
     body {
       font-family: system-ui, sans-serif;
-      padding: 2rem;
-      max-width: 700px;
-      margin: auto;
-      background-color: white;
-      color: black;
+      margin: 2rem;
+      line-height: 1.6;
     }
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #eee;
+    h1, h2, h3 {
+      margin-top: 2rem;
+    }
+    details {
+      margin-bottom: 1.5rem;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    ul, ol {
+      padding-left: 1.5rem;
+    }
+    ul.checklist, ol.checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul.checklist li, ol.checklist li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.3rem;
+    }
+    ul.checklist input[type="checkbox"], ol.checklist input[type="checkbox"] {
+      margin-right: 0.6rem;
+    }
+    button {
+      margin-top: 2rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    @media print {
+      details {
+        display: block !important;
+      }
+      summary {
+        display: none;
       }
     }
-    h1, h2
+  </style>
+</head>
+<body>
+  <h1>Italian Ragù Recipe &amp; Shopping List (12 Portions)</h1>
+
+  <details open>
+    <summary>Shopping List</summary>
+
+    <h3>Meat (choose one combination):</h3>
+    <ul class="checklist">
+      <li><input type="checkbox">Option 1: 1.5kg Svinebog (pork shoulder) + 1kg Høyrygg (beef chuck)</li>
+      <li><input type="checkbox">Option 2: 2kg Bibringe (beef short ribs)</li>
+      <li><input type="checkbox">Option 3: 1.2kg Svinebog + 800g Lammebog (lamb shoulder)</li>
+    </ul>
+
+    <h3>Vegetables &amp; Aromatics:</h3>
+    <ul class="checklist">
+      <li><input type="checkbox">3 large onions (450g)</li>
+      <li><input type="checkbox">4 large carrots (400g)</li>
+      <li><input type="checkbox">4 stalks celery (200g)</li>
+      <li><input type="checkbox">200g pancetta or bacon</li>
+      <li><input type="checkbox">1 head garlic</li>
+      <li><input type="checkbox">Fresh bay leaves (6–8 leaves)</li>
+      <li><input type="checkbox">Fresh thyme or rosemary</li>
+    </ul>
+
+    <h3>Pantry Items:</h3>
+    <ul class="checklist">
+      <li><input type="checkbox">200ml whole milk</li>
+      <li><input type="checkbox">400ml dry white wine</li>
+      <li><input type="checkbox">800ml beef or vegetable stock</li>
+      <li><input type="checkbox">800g canned San Marzano tomatoes</li>
+      <li><input type="checkbox">6 tbsp tomato paste (concentrated)</li>
+      <li><input type="checkbox">Extra virgin olive oil</li>
+      <li><input type="checkbox">Salt and black pepper</li>
+      <li><input type="checkbox">Parmigiano-Reggiano for serving</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Recipe Checklist</summary>
+    <h3>Prep (30 minutes):</h3>
+    <ol class="checklist">
+      <li><input type="checkbox">Cut meat into 3cm chunks (not minced)</li>
+      <li><input type="checkbox">Finely dice onions, carrots, celery (soffritto)</li>
+      <li><input type="checkbox">Dice pancetta</li>
+      <li><input type="checkbox">Crush tomatoes by hand</li>
+      <li><input type="checkbox">Measure out wine, milk, stock</li>
+    </ol>
+
+    <h3>Cooking Process (4–5 hours):</h3>
+    <h4>Phase 1: Build the Base (20 minutes)</h4>
+    <ol class="checklist">
+      <li><input type="checkbox">Heat olive oil in heavy-bottomed pot</li>
+      <li><input type="checkbox">Brown meat chunks in batches (don’t overcrowd)</li>
+      <li><input type="checkbox">Remove meat, set aside</li>
+      <li><input type="checkbox">Sauté pancetta until fat renders</li>
+      <li><input type="checkbox">Add soffritto, cook until softened (10 minutes)</li>
+    </ol>
+
+    <h4>Phase 2: Deglaze & Combine (15 minutes)</h4>
+    <ol class="checklist">
+      <li><input type="checkbox">Add tomato paste, cook 2 minutes</li>
+      <li><input type="checkbox">Return meat to pot</li>
+      <li><input type="checkbox">Add milk, simmer until absorbed</li>
+      <li><input type="checkbox">Add wine, simmer until reduced by half</li>
+      <li><input type="checkbox">Add crushed tomatoes, bay leaves, herbs</li>
+    </ol>
+
+    <h4>Phase 3: Long Braise (3–4 hours)</h4>
+    <ol class="checklist">
+      <li><input type="checkbox">Bring to gentle simmer</li>
+      <li><input type="checkbox">Cover partially, cook very low heat</li>
+      <li><input type="checkbox">Stir every 30 minutes</li>
+      <li><input type="checkbox">Add stock gradually as needed</li>
+      <li><input type="checkbox">Taste and adjust seasoning in final hour</li>
+      <li><input type="checkbox">Sauce ready when meat shreds easily</li>
+    </ol>
+
+    <h3>Final Check:</h3>
+    <ol class="checklist">
+      <li><input type="checkbox">Meat breaks into fibrous strands</li>
+      <li><input type="checkbox">Sauce coats spoon but isn’t dry</li>
+      <li><input type="checkbox">Rich, deep color</li>
+      <li><input type="checkbox">No raw wine taste</li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>Serving Notes</summary>
+    <ul>
+      <li>Serve with fresh tagliatelle or pappardelle</li>
+      <li>Top with grated Parmigiano-Reggiano</li>
+      <li>Can be made 1–2 days ahead (improves flavor)</li>
+      <li>Freezes well for up to 3 months</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Reference Sources</summary>
+    <ul>
+      <li><a href="https://www.greatitalianchefs.com/recipes/ragu-alla-bolognese-recipe" target="_blank">Great Italian Chefs – Authentic Bolognese Recipe</a></li>
+      <li><a href="https://www.pastagrammar.com/post/how-to-make-traditional-italian-rag%C3%B9-alla-bolognese" target="_blank">Pasta Grammar – Traditional Ragù</a></li>
+      <li><a href="https://www.anitalianinmykitchen.com/bolognese-sauce/" target="_blank">An Italian in My Kitchen – Bolognese Sauce</a></li>
+      <li><a href="https://www.matprat.no/artikler/fakta/slik-er-kjottet-skaret/" target="_blank">Matprat.no – Norwegian Meat Cut Dictionary</a></li>
+    </ul>
+  </details>
+
+  <button onclick="resetPage()">Reset Page</button>
+
+  <script>
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      const key = cb.parentElement.textContent.trim();
+      cb.checked = localStorage.getItem(key) === 'true';
+      cb.addEventListener('change', () => {
+        localStorage.setItem(key, cb.checked);
+      });
+    });
+
+    function resetPage() {
+      localStorage.clear();
+      location.reload();
+    }
+  </script>
+</body>
+</html>
