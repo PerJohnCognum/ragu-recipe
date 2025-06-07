@@ -1,200 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Italian Ragù Recipe</title>
-<style>
-  /* Auto theme based on user preference */
-  @media (prefers-color-scheme: dark) {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Italian Ragù Recipe</title>
+  <style>
     body {
-      background: #121212;
-      color: #ddd;
+      font-family: system-ui, sans-serif;
+      margin: 2rem;
+      max-width: 800px;
+      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
     }
-    summary {
-      color: #eee;
-    }
-    button {
-      background: #222;
-      border-color: #666;
-      color: #ddd;
-    }
-    button:hover {
-      background: #333;
-    }
-    a {
-      color: #6ca0ff;
-    }
-  }
-  @media (prefers-color-scheme: light) {
-    body {
-      background: white;
-      color: #222;
-    }
-    summary {
-      color: #111;
-    }
-    button {
-      background: white;
-      border-color: #333;
-      color: #111;
-    }
-    button:hover {
-      background: #eee;
-    }
-    a {
-      color: #0366d6;
-    }
-  }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    max-width: 700px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    line-height: 1.5;
-  }
-  h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  details {
-    margin-bottom: 1.5rem;
-  }
-  summary {
-    font-weight: bold;
-    cursor: pointer;
-    user-select: none;
-  }
-  ul, ol {
-    padding-left: 1.3rem;
-  }
-  li {
-    margin: 0.25rem 0;
-  }
-  label {
-    cursor: pointer;
-  }
-  input[type="checkbox"] {
-    margin-right: 0.5rem;
-    cursor: pointer;
-  }
-  button {
-    display: block;
-    margin: 2rem auto 4rem auto;
-    padding: 0.5rem 1.2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    border: 1.5px solid;
-    border-radius: 5px;
-    transition: background 0.2s ease;
-  }
-
-  /* Print-friendly CSS */
-  @media print {
-    button,
-    input[type="checkbox"],
-    summary {
-      display: none !important;
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 0.2em;
     }
+
+    h2 {
+      font-size: 1.3em;
+      margin-top: 1.6em;
+    }
+
     details {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 1em;
+      margin-top: 1em;
+      background: var(--card);
+    }
+
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+      margin: -1em;
+      padding: 1em;
+    }
+
+    ul.checkbox-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin: 0.4em 0;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 0.5em;
+    }
+
+    ol li {
+      margin-bottom: 0.6em;
+    }
+
+    button {
+      margin-top: 2em;
+      padding: 0.6em 1em;
+      font-size: 1em;
       border: none;
-      margin-bottom: 0;
+      border-radius: 6px;
+      background-color: #555;
+      color: white;
+      cursor: pointer;
     }
-    body {
-      max-width: none;
-      margin: 0;
-      padding: 0;
-      color: black !important;
-      background: white !important;
-      font-size: 12pt;
-      line-height: 1.3;
-    }
-  }
-</style>
-</head>
-<body>
 
-<h1>Italian Ragù Recipe (12 Portions)</h1>
-
-<!-- Shopping List: open by default -->
-<details open id="shoppingList">
-  <summary>Shopping List</summary>
-  
-  <h3>Meat (choose one combination):</h3>
-  <ul>
-    <li><label><input type="checkbox" data-id="meat1" />1.5kg Svinebog (pork shoulder) + 1kg Høyrygg (beef chuck)</label></li>
-    <li><label><input type="checkbox" data-id="meat2" />2kg Bibringe (beef short ribs)</label></li>
-    <li><label><input type="checkbox" data-id="meat3" />1.2kg Svinebog + 800g Lammebog (lamb shoulder)</label></li>
-  </ul>
-
-  <h3>Vegetables & Aromatics:</h3>
-  <ul>
-    <li><label><input type="checkbox" data-id="veg1" />3 large onions (450g)</label></li>
-    <li><label><input type="checkbox" data-id="veg2" />4 large carrots (400g)</label></li>
-    <li><label><input type="checkbox" data-id="veg3" />4 stalks celery (200g)</label></li>
-    <li><label><input type="checkbox" data-id="veg4" />200g pancetta or bacon</label></li>
-    <li><label><input type="checkbox" data-id="veg5" />1 head garlic</label></li>
-    <li><label><input type="checkbox" data-id="veg6" />Fresh bay leaves (6-8 leaves)</label></li>
-    <li><label><input type="checkbox" data-id="veg7" />Fresh thyme or rosemary</label></li>
-  </ul>
-
-  <h3>Pantry Items:</h3>
-  <ul>
-    <li><label><input type="checkbox" data-id="pantry1" />200ml whole milk</label></li>
-    <li><label><input type="checkbox" data-id="pantry2" />400ml dry white wine</label></li>
-    <li><label><input type="checkbox" data-id="pantry3" />800ml beef or vegetable stock</label></li>
-    <li><label><input type="checkbox" data-id="pantry4" />800g canned San Marzano tomatoes (or good quality whole tomatoes)</label></li>
-    <li><label><input type="checkbox" data-id="pantry5" />6 tbsp tomato paste (concentrated)</label></li>
-  </ul>
-</details>
-
-<!-- Instructions: collapsed by default, with checkboxes -->
-<details id="instructions">
-  <summary>Instructions</summary>
-  <ol>
-    <li><label><input type="checkbox" data-id="step1" />Finely dice onions, carrots, celery, pancetta, and garlic.</label></li>
-    <li><label><input type="checkbox" data-id="step2" />Brown the meat in batches in a large pot over medium heat; set aside.</label></li>
-    <li><label><input type="checkbox" data-id="step3" />Sauté the diced vegetables and pancetta until soft and golden.</label></li>
-    <li><label><input type="checkbox" data-id="step4" />Return meat to pot, add tomato paste, and cook for a few minutes.</label></li>
-    <li><label><input type="checkbox" data-id="step5" />Pour in white wine and let reduce by half.</label></li>
-    <li><label><input type="checkbox" data-id="step6" />Add canned tomatoes, bay leaves, and herbs; simmer gently for 3-4 hours.</label></li>
-    <li><label><input type="checkbox" data-id="step7" />Stir in whole milk near the end; adjust seasoning.</label></li>
-    <li><label><input type="checkbox" data-id="step8" />Serve over fresh pasta or polenta.</label></li>
-  </ol>
-</details>
-
-<!-- Sources: collapsed by default -->
-<details id="sources">
-  <summary>Sources</summary>
-  <ul>
-    <li><a href="https://www.greatitalianchefs.com/recipes/bolognese-recipe" target="_blank" rel="noopener noreferrer">Great Italian Chefs - Bolognese</a></li>
-    <li><a href="https://www.seriouseats.com/italian-ragu-bolognese-recipe" target="_blank" rel="noopener noreferrer">Serious Eats - Italian Ragù</a></li>
-    <li><a href="https://en.wikipedia.org/wiki/Ragù" target="_blank" rel="noopener noreferrer">Wikipedia - Ragù</a></li>
-    <li><a href="https://www.lacucinaitaliana.com/recipe/italian-classics/bolognese-sauce" target="_blank" rel="noopener noreferrer">La Cucina Italiana - Bolognese</a></li>
-  </ul>
-</details>
-
-<!-- Reset button -->
-<button id="resetBtn" type="button" aria-label="Reset all checkboxes and collapsibles to initial state">Reset All</button>
-
-<script>
-  const resetBtn = document.getElementById('resetBtn');
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  const detailsElements = document.querySelectorAll('details');
-
-  // Store initial open state of each <details>
-  const detailsInitialState = Array.from(detailsElements).map(d => d.open);
-
-  // Load checkbox & details states from localStorage
-  function loadState() {
-    checkboxes.forEach(cb => {
-      const saved = localStorage.getItem('checkbox-' + cb.dataset.id);
-      cb.checked = saved === 'true';
-    });
-    detailsElements.forEach((d, i) => {
-      const saved = localStorage.getItem('details-' + d.id);
-      if (saved !== null) {
-        d.open = saved === 'true';
-      } else
+    button:hover {
+      b
