@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Italian Ragù Recipe & Shopping List (12 Portions)</title>
 <style>
-  /* Base styles */
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -33,7 +32,6 @@
     outline: 2px solid #06c;
   }
   ul, ol {
-    padding-left: 1.2em;
     margin-top: 0;
     margin-bottom: 0.8em;
   }
@@ -77,8 +75,6 @@
     border-radius: 4px;
     user-select: none;
   }
-
-  /* Responsive font scaling */
   @media (max-width: 480px) {
     body {
       padding: 0 0.8em;
@@ -89,118 +85,4 @@
     }
     button#reset-btn {
       font-size: 1rem;
-      padding: 0.4em 0.8em;
-    }
-  }
-
-  /* Print styling */
-  @media print {
-    button#reset-btn {
-      display: none;
-    }
-    details > summary {
-      cursor: default;
-      list-style: none;
-    }
-    /* Show all details expanded for print */
-    details:not([open]) {
-      display: block;
-    }
-    details summary::marker {
-      content: "";
-    }
-    input[type="checkbox"] {
-      -webkit-appearance: checkbox;
-      appearance: checkbox;
-      /* Checked states not reliably printed, so unchecked by default */
-    }
-  }
-</style>
-</head>
-<body>
-<h1>Italian Ragù Recipe &amp; Shopping List (12 Portions)</h1>
-
-<details open>
-  <summary>Shopping List (choose one meat option)</summary>
-  <ul class="no-bullets">
-    <li><strong>Option 1:</strong> 1.5kg Svinebog (pork shoulder) + 1kg Høyrygg (beef chuck)</li>
-    <li><strong>Option 2:</strong> 2kg Bibringe (beef short ribs)</li>
-    <li><strong>Option 3:</strong> 1.2kg Svinebog + 800g Lammebog (lamb shoulder)</li>
-  </ul>
-  <strong>Vegetables &amp; Aromatics:</strong>
-  <ul class="no-bullets">
-    <li>3 large onions (450g)</li>
-    <li>4 large carrots (400g)</li>
-    <li>4 stalks celery (200g)</li>
-    <li>200g pancetta or bacon</li>
-    <li>1 head garlic</li>
-    <li>Fresh bay leaves (6-8 leaves)</li>
-    <li>Fresh thyme or rosemary</li>
-  </ul>
-  <strong>Pantry Items:</strong>
-  <ul class="no-bullets">
-    <li>200ml whole milk</li>
-    <li>400ml dry white wine</li>
-    <li>800ml beef or vegetable stock</li>
-    <li>800g canned San Marzano tomatoes (or good quality whole tomatoes)</li>
-    <li>6 tbsp tomato paste (concentrated)</li>
-    <li>Extra virgin olive oil</li>
-    <li>Salt and black pepper</li>
-    <li>Parmigiano-Reggiano for serving</li>
-  </ul>
-</details>
-
-<details>
-  <summary>Recipe Checklist</summary>
-
-  <section class="instructions">
-    <h2>Prep (30 minutes):</h2>
-    <ol>
-      <li><label><input type="checkbox" data-group="prep" /> Cut meat into 3cm chunks (not minced)</label></li>
-      <li><label><input type="checkbox" data-group="prep" /> Finely dice onions, carrots, celery (soffritto)</label></li>
-      <li><label><input type="checkbox" data-group="prep" /> Dice pancetta</label></li>
-      <li><label><input type="checkbox" data-group="prep" /> Crush tomatoes by hand</label></li>
-      <li><label><input type="checkbox" data-group="prep" /> Measure out wine, milk, stock</label></li>
-    </ol>
-
-    <h2>Cooking Process (4-5 hours):</h2>
-
-    <h3>Phase 1: Build the Base (20 minutes)</h3>
-    <ol>
-      <li><label><input type="checkbox" data-group="cook" /> Heat olive oil in heavy-bottomed pot</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Brown meat chunks in batches (don't overcrowd)</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Remove meat, set aside</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Sauté pancetta until fat renders</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Add soffritto, cook until softened (10 minutes)</label></li>
-    </ol>
-
-    <h3>Phase 2: Deglaze &amp; Combine (15 minutes)</h3>
-    <ol>
-      <li><label><input type="checkbox" data-group="cook" /> Add tomato paste, cook 2 minutes</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Return meat to pot</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Add milk, simmer until absorbed</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Add wine, simmer until reduced by half</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Add crushed tomatoes, bay leaves, herbs</label></li>
-    </ol>
-
-    <h3>Phase 3: Long Braise (3-4 hours)</h3>
-    <ol>
-      <li><label><input type="checkbox" data-group="cook" /> Bring to gentle simmer</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Cover partially, cook very low heat</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Stir every 30 minutes</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Add stock gradually as needed</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Taste and adjust seasoning in final hour</label></li>
-      <li><label><input type="checkbox" data-group="cook" /> Sauce ready when meat shreds easily</label></li>
-    </ol>
-
-    <h2>Final Check:</h2>
-    <ul>
-      <li>Meat breaks into fibrous strands</li>
-      <li>Sauce coats spoon but isn't dry</li>
-      <li>Rich, deep color</li>
-      <li>No raw wine taste</li>
-    </ul>
-
-    <h2>Serving Notes:</h2>
-    <ul>
-      <li>Serve with fresh tagliat
+      p
