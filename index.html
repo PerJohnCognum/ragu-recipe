@@ -3,175 +3,125 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Italian Ragù Recipe & Shopping List (12 Portions)</title>
+<title>Italian Ragù Recipe & Shopping List</title>
 <style>
-  /* Reset and base */
+  /* Reset & base */
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    background: #fefefe;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    margin: 1em 1.5em 3em;
+    background: white;
     color: #222;
-    margin: 1rem auto;
-    line-height: 1.5;
-    max-width: 720px;
   }
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: #121212;
+      color: #ddd;
+    }
+    summary::-webkit-details-marker {
+      color: #ddd;
+    }
+  }
+
   h1 {
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3em;
   }
+
+  /* Collapsible styling */
   details {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.3em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.6em 1em;
+    background: #f9f9f9;
   }
+  @media (prefers-color-scheme: dark) {
+    details {
+      background: #222;
+      border-color: #555;
+    }
+  }
+  details[open] {
+    background: #e9ecef;
+  }
+  @media (prefers-color-scheme: dark) {
+    details[open] {
+      background: #333;
+    }
+  }
+
   summary {
-    font-weight: 600;
-    font-size: 1.1rem;
+    font-weight: bold;
+    font-size: 1.2em;
     cursor: pointer;
-    outline-offset: 4px;
+    outline-offset: 2px;
   }
-  summary:focus {
-    outline: 2px solid #0069f9;
-    outline-offset: 3px;
+  summary::-webkit-details-marker {
+    font-size: 1.3em;
   }
-  label {
-    cursor: pointer;
+
+  /* Shopping List checkboxes: no bullets */
+  #shopping-list ul,
+  #shopping-list ol {
+    list-style: none;
+    padding-left: 0;
+  }
+  #shopping-list li {
+    margin-bottom: 0.2em;
+  }
+  #shopping-list input[type="checkbox"] {
+    margin-right: 0.6em;
+    transform: scale(1.1);
+    vertical-align: middle;
+  }
+
+  /* Instructions list */
+  #instructions ol {
+    padding-left: 1.5em;
+    counter-reset: section-counter;
+  }
+  #instructions li {
+    margin-bottom: 0.45em;
     display: flex;
     align-items: center;
-    gap: 0.5em;
   }
-  ul, ol {
-    margin-top: 0.25em;
-    margin-bottom: 1em;
+  #instructions input[type="checkbox"] {
+    margin-right: 0.7em;
+    transform: scale(1.2);
+    flex-shrink: 0;
+  }
+  #instructions label {
+    flex-grow: 1;
+  }
+
+  /* Number alignment fix on mobile for instructions */
+  @media (max-width: 600px) {
+    #instructions ol {
+      padding-left: 2.2em;
+    }
+    #instructions li {
+      /* The number and checkbox side by side */
+      display: flex;
+      align-items: center;
+    }
+    #instructions li::marker {
+      font-weight: bold;
+      font-size: 1em;
+      color: inherit;
+    }
+  }
+
+  /* Phase headings inside instructions: bold, bigger, no checkbox */
+  #instructions .phase-heading {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 1em;
+    margin-bottom: 0.4em;
+  }
+
+  /* Related links list */
+  #related-links ul {
     padding-left: 1.2em;
   }
-  ul.no-bullets {
-    padding-left: 0;
-    list-style: none;
-  }
-  ul.no-bullets li label {
-    display: block;
-  }
-  input[type="checkbox"] {
-    width: 1.2em;
-    height: 1.2em;
-  }
-  /* Remove bullet for all except numbered lists in instructions */
-  ul.no-bullets li {
-    list-style: none;
-  }
-
-  button {
-    background: #0069f9;
-    border: none;
-    color: white;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 0.5em 1em;
-    border-radius: 4px;
-    cursor: pointer;
-    user-select: none;
-  }
-  button:hover,
-  button:focus {
-    background: #0053c9;
-    outline: none;
-  }
-  /* Print Styles */
-  @media print {
-    button {
-      display: none !important;
-    }
-    details {
-      display: block !important;
-    }
-    details[open] > summary::after {
-      content: '';
-    }
-    input[type="checkbox"] {
-      visibility: visible;
-      pointer-events: none;
-      margin-right: 0.4em;
-    }
-  }
-  /* Responsive small device tweaks */
-  @media (max-width: 480px) {
-    body {
-      margin: 0.5rem 1rem;
-      font-size: 1rem;
-    }
-    h1 {
-      font-size: 1.5rem;
-    }
-  }
-</style>
-</head>
-<body>
-<h1>Italian Ragù Recipe &amp; Shopping List (12 Portions)</h1>
-
-<details open id="shopping-details">
-  <summary>Shopping List</summary>
-  <h2>Meat (choose one combination):</h2>
-  <ul class="no-bullets" id="meat-options">
-    <li><label><input type="checkbox" id="meat1" name="meat" /> Option 1: 1.5kg Svinebog (pork shoulder) + 1kg Høyrygg (beef chuck)</label></li>
-    <li><label><input type="checkbox" id="meat2" name="meat" /> Option 2: 2kg Bibringe (beef short ribs)</label></li>
-    <li><label><input type="checkbox" id="meat3" name="meat" /> Option 3: 1.2kg Svinebog + 800g Lammebog (lamb shoulder)</label></li>
-  </ul>
-
-  <h2>Vegetables &amp; Aromatics:</h2>
-  <ul class="no-bullets" id="veg-aromatics">
-    <li><label><input type="checkbox" id="veg1" /> 3 large onions (450g)</label></li>
-    <li><label><input type="checkbox" id="veg2" /> 4 large carrots (400g)</label></li>
-    <li><label><input type="checkbox" id="veg3" /> 4 stalks celery (200g)</label></li>
-    <li><label><input type="checkbox" id="veg4" /> 200g pancetta or bacon</label></li>
-    <li><label><input type="checkbox" id="veg5" /> 1 head garlic</label></li>
-    <li><label><input type="checkbox" id="veg6" /> Fresh bay leaves (6-8 leaves)</label></li>
-    <li><label><input type="checkbox" id="veg7" /> Fresh thyme or rosemary</label></li>
-  </ul>
-
-  <h2>Pantry Items:</h2>
-  <ul class="no-bullets" id="pantry-items">
-    <li><label><input type="checkbox" id="pantry1" /> 200ml whole milk</label></li>
-    <li><label><input type="checkbox" id="pantry2" /> 400ml dry white wine</label></li>
-    <li><label><input type="checkbox" id="pantry3" /> 800ml beef or vegetable stock</label></li>
-    <li><label><input type="checkbox" id="pantry4" /> 800g canned San Marzano tomatoes (or good quality whole tomatoes)</label></li>
-    <li><label><input type="checkbox" id="pantry5" /> 6 tbsp tomato paste (concentrated)</label></li>
-    <li><label><input type="checkbox" id="pantry6" /> Extra virgin olive oil</label></li>
-    <li><label><input type="checkbox" id="pantry7" /> Salt and black pepper</label></li>
-    <li><label><input type="checkbox" id="pantry8" /> Parmigiano-Reggiano for serving</label></li>
-  </ul>
-</details>
-
-<details id="instructions-details">
-  <summary>Recipe Checklist</summary>
-  <ol id="instructions-list">
-    <li><label><input type="checkbox" id="prep1" /> Cut meat into 3cm chunks (not minced)</label></li>
-    <li><label><input type="checkbox" id="prep2" /> Finely dice onions, carrots, celery (soffritto)</label></li>
-    <li><label><input type="checkbox" id="prep3" /> Dice pancetta</label></li>
-    <li><label><input type="checkbox" id="prep4" /> Crush tomatoes by hand</label></li>
-    <li><label><input type="checkbox" id="prep5" /> Measure out wine, milk, stock</label></li>
-
-    <li><strong>Phase 1: Build the Base (20 minutes)</strong></li>
-    <li><label><input type="checkbox" id="cook1" /> Heat olive oil in heavy-bottomed pot</label></li>
-    <li><label><input type="checkbox" id="cook2" /> Brown meat chunks in batches (don't overcrowd)</label></li>
-    <li><label><input type="checkbox" id="cook3" /> Remove meat, set aside</label></li>
-    <li><label><input type="checkbox" id="cook4" /> Sauté pancetta until fat renders</label></li>
-    <li><label><input type="checkbox" id="cook5" /> Add soffritto, cook until softened (10 minutes)</label></li>
-
-    <li><strong>Phase 2: Deglaze &amp; Combine (15 minutes)</strong></li>
-    <li><label><input type="checkbox" id="cook6" /> Add tomato paste, cook 2 minutes</label></li>
-    <li><label><input type="checkbox" id="cook7" /> Return meat to pot</label></li>
-    <li><label><input type="checkbox" id="cook8" /> Add milk, simmer until absorbed</label></li>
-    <li><label><input type="checkbox" id="cook9" /> Add wine, simmer until reduced by half</label></li>
-    <li><label><input type="checkbox" id="cook10" /> Add crushed tomatoes, bay leaves, herbs</label></li>
-
-    <li><strong>Phase 3: Long Braise (3-4 hours)</strong></li>
-    <li><label><input type="checkbox" id="cook11" /> Bring to gentle simmer</label></li>
-    <li><label><input type="checkbox" id="cook12" /> Cover partially, cook very low heat</label></li>
-    <li><label><input type="checkbox" id="cook13" /> Stir every 30 minutes</label></li>
-    <li><label><input type="checkbox" id="cook14" /> Add stock gradually as needed</label></li>
-    <li><label><input type="checkbox" id="cook15" /> Taste and adjust seasoning in final hour</label></li>
-    <li><label><input type="checkbox" id="cook16" /> Sauce ready when meat shreds easily</label></li>
-
-    <li><strong>Final Check:</strong></li>
-    <li><label><input type="checkbox" id="final1" /> Meat breaks into fibrous strands</label></li>
-    <li><label><input type="checkbox" id="final2" /> Sauce coats spoon but isn't dry</label></li>
-    <li><label><input type="checkbox" id="
+  #related-links li {
+    ma
