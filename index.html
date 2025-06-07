@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Italian Ragù Recipe</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg-light: #ffffff;
+      --bg-dark: #1e1e1e;
+      --text-light: #000000;
+      --text-dark: #ffffff;
+      --accent: #b33;
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-dark);
+      }
+    }
+
+    h1, h2 {
+      color: var(--accent);
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin: 0.3rem 0;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+
+    details {
+      margin-top: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--accent);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .option-group {
+      margin-left: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Italian Ragù Recipe</h1>
+  <p><strong>12 Portions</strong></p>
+
+  <section>
+    <h2>Shopping List</h2>
+
+    <h3>Meat (choose one combination):</h3>
+    <ul>
+      <li><input type="checkbox" id="meat1"><label for="meat1">1.5kg Svinebog (pork shoulder) + 1kg Høyrygg (beef chuck)</label></li>
+      <li><input type="checkbox" id="meat2"><label for="meat2">2kg Bibringe (beef short ribs)</label></li>
+      <li><input type="checkbox" id="meat3"><label for="meat3">1.2kg Svinebog + 800g Lammebog (lamb shoulder)</label></li>
+    </ul>
+
+    <h3>Vegetables & Aromatics:</h3>
+    <ul>
+      <li><input type="checkbox" id="veg1"><label for="veg1">3 large onions (450g)</label></li>
+      <li><input type="checkbox" id="veg2"><label for="veg2">4 large carrots (400g)</label></li>
+      <li><input type="checkbox" id="veg3"><label for="veg3">4 stalks celery (200g)</label></li>
+      <li><input type="checkbox" id="veg4"><label for="veg4">200g pancetta or bacon</label></li>
+      <li><input type="checkbox" id="veg5"><label for="veg5">1 head garlic</label></li>
+      <li><input type="checkbox" id="veg6"><label for="veg6">Fresh bay leaves (6–8 leaves)</label></li>
+      <li><input type="checkbox" id="veg7"><label for="veg7">Fresh thyme or rosemary</label></li>
+    </ul>
+
+    <h3>Pantry Items:</h3>
+    <ul>
+      <li><input type="checkbox" id="pantry1"><label for="pantry1">200ml whole milk</label></li>
+      <li><input type="checkbox" id="pantry2"><label for="pantry2">400ml dry white wine</label></li>
+      <li><input type="checkbox" id="pantry3"><label for="pantry3">800ml beef or vegetable stock</label></li>
+      <li><input type="checkbox" id="pantry4"><label for="pantry4">800g canned San Marzano tomatoes</label></li>
+      <li><input type="checkbox" id="pantry5"><label for="pantry5">6 tbsp tomato paste (concentrated)</label></li>
+    </ul>
+  </section>
+
+  <details>
+    <summary>Optional Notes</summary>
+    <ul>
+      <li>San Marzano can be swapped for other whole canned tomatoes—go for quality.</li>
+      <li>You can double the batch and freeze in portions.</li>
+      <li>Try with rigatoni, tagliatelle, or polenta.</li>
+    </ul>
+  </details>
+</body>
+</html>
