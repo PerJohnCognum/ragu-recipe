@@ -1,206 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="auto">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Italian Ragù Recipe</title>
   <style>
     body {
       font-family: system-ui, sans-serif;
-      margin: 2rem;
-      max-width: 800px;
-      line-height: 1.6;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.3s, color 0.3s;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+      background-color: white;
+      color: black;
     }
-
-    h1 {
-      font-size: 1.8em;
-      margin-bottom: 0.2em;
-    }
-
-    h2 {
-      font-size: 1.3em;
-      margin-top: 1.6em;
-    }
-
-    details {
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 1em;
-      margin-top: 1em;
-      background: var(--card);
-    }
-
-    summary {
-      font-weight: bold;
-      cursor: pointer;
-      margin: -1em;
-      padding: 1em;
-    }
-
-    ul.checkbox-list {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    li {
-      margin: 0.4em 0;
-    }
-
-    input[type="checkbox"] {
-      margin-right: 0.5em;
-    }
-
-    ol li {
-      margin-bottom: 0.6em;
-    }
-
-    button {
-      margin-top: 2em;
-      padding: 0.6em 1em;
-      font-size: 1em;
-      border: none;
-      border-radius: 6px;
-      background-color: #555;
-      color: white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #333;
-    }
-
-    /* Auto theme */
-    :root {
-      --bg: white;
-      --text: black;
-      --card: #f8f8f8;
-    }
-
     @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #121212;
-        --text: #f0f0f0;
-        --card: #1e1e1e;
-      }
-
-      button {
-        background-color: #888;
-        color: black;
-      }
-
-      button:hover {
-        background-color: #aaa;
-      }
-    }
-
-    @media print {
-      button,
-      summary {
-        display: none !important;
-      }
-
-      details {
-        border: none;
-        margin-bottom: 0;
-      }
-
-      input[type="checkbox"] {
-        margin-right: 0.5em;
-      }
-
       body {
-        max-width: none;
-        margin: 0;
-        padding: 0;
-        color: black !important;
-        background: white !important;
-        font-size: 12pt;
-        line-height: 1.3;
+        background-color: #121212;
+        color: #eee;
       }
     }
-  </style>
-</head>
-<body>
-  <h1>Italian Ragù Recipe</h1>
-  <p><strong>Portions:</strong> 12</p>
-
-  <details open>
-    <summary>🛒 Shopping List</summary>
-    <h2>Meat (choose one combination):</h2>
-    <ul class="checkbox-list">
-      <li><label><input type="checkbox">1.5kg Svinebog (pork shoulder) + 1kg Høyrygg (beef chuck)</label></li>
-      <li><label><input type="checkbox">2kg Bibringe (beef short ribs)</label></li>
-      <li><label><input type="checkbox">1.2kg Svinebog + 800g Lammebog (lamb shoulder)</label></li>
-    </ul>
-
-    <h2>Vegetables & Aromatics:</h2>
-    <ul class="checkbox-list">
-      <li><label><input type="checkbox">3 large onions (450g)</label></li>
-      <li><label><input type="checkbox">4 large carrots (400g)</label></li>
-      <li><label><input type="checkbox">4 stalks celery (200g)</label></li>
-      <li><label><input type="checkbox">200g pancetta or bacon</label></li>
-      <li><label><input type="checkbox">1 head garlic</label></li>
-      <li><label><input type="checkbox">Fresh bay leaves (6-8 leaves)</label></li>
-      <li><label><input type="checkbox">Fresh thyme or rosemary</label></li>
-    </ul>
-
-    <h2>Pantry Items:</h2>
-    <ul class="checkbox-list">
-      <li><label><input type="checkbox">200ml whole milk</label></li>
-      <li><label><input type="checkbox">400ml dry white wine</label></li>
-      <li><label><input type="checkbox">800ml beef or vegetable stock</label></li>
-      <li><label><input type="checkbox">800g canned San Marzano tomatoes</label></li>
-      <li><label><input type="checkbox">6 tbsp tomato paste (concentrated)</label></li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>📋 Instructions</summary>
-    <ol>
-      <li><label><input type="checkbox">Dice vegetables and pancetta finely.</label></li>
-      <li><label><input type="checkbox">Sauté pancetta in olive oil until golden.</label></li>
-      <li><label><input type="checkbox">Add vegetables and cook until soft.</label></li>
-      <li><label><input type="checkbox">Add minced or finely chopped meat. Brown well.</label></li>
-      <li><label><input type="checkbox">Add tomato paste, stir and cook for 5 minutes.</label></li>
-      <li><label><input type="checkbox">Deglaze with white wine. Let reduce.</label></li>
-      <li><label><input type="checkbox">Add stock, tomatoes, herbs. Simmer uncovered 3–4 hours.</label></li>
-      <li><label><input type="checkbox">Add milk during last 30 minutes to mellow acidity.</label></li>
-      <li><label><input type="checkbox">Season with salt and pepper. Remove herbs before serving.</label></li>
-    </ol>
-  </details>
-
-  <details>
-    <summary>🔗 Sources & Links</summary>
-    <ul>
-      <li><a href="https://www.seriouseats.com/the-best-meat-sauce-bolognese-recipe">Serious Eats – Bolognese</a></li>
-      <li><a href="https://www.youtube.com/watch?v=Huh6YxJWz5U">YouTube – Pasta Grannies (Bolognese)</a></li>
-      <li><a href="https://www.lacucinaitaliana.it/">La Cucina Italiana</a></li>
-    </ul>
-  </details>
-
-  <button onclick="resetAll()">Reset All</button>
-
-  <script>
-    // Save checkbox state
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach((box, i) => {
-      const key = "checkbox" + i;
-      box.checked = localStorage.getItem(key) === "true";
-      box.addEventListener('change', () => localStorage.setItem(key, box.checked));
-    });
-
-    function resetAll() {
-      checkboxes.forEach((box, i) => {
-        box.checked = false;
-        localStorage.removeItem("checkbox" + i);
-      });
-      document.querySelectorAll("details").forEach((d, i) => {
-        d.open = i === 0; // Only first open
-      });
-    }
-  </script>
-</body>
-</html>
+    h1, h2
