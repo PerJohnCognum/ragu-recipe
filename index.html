@@ -65,6 +65,7 @@
   #shopping-list ol {
     list-style: none;
     padding-left: 0;
+    margin-left: 0;
   }
   #shopping-list li {
     margin-bottom: 0.2em;
@@ -78,7 +79,6 @@
   /* Instructions list */
   #instructions ol {
     padding-left: 1.5em;
-    counter-reset: section-counter;
   }
   #instructions li {
     margin-bottom: 0.45em;
@@ -100,14 +100,8 @@
       padding-left: 2.2em;
     }
     #instructions li {
-      /* The number and checkbox side by side */
       display: flex;
       align-items: center;
-    }
-    #instructions li::marker {
-      font-weight: bold;
-      font-size: 1em;
-      color: inherit;
     }
   }
 
@@ -124,4 +118,70 @@
     padding-left: 1.2em;
   }
   #related-links li {
-    ma
+    margin-bottom: 0.3em;
+  }
+  #related-links input[type="checkbox"] {
+    margin-right: 0.6em;
+    transform: scale(1.1);
+    vertical-align: middle;
+  }
+
+  /* Reset button styling */
+  #reset-btn {
+    display: block;
+    margin: 2em auto 0;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    border-radius: 6px;
+    border: 1.5px solid #0077cc;
+    background: #0077cc;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.25s ease;
+  }
+  #reset-btn:hover,
+  #reset-btn:focus {
+    background: #005fa3;
+    border-color: #005fa3;
+    outline: none;
+  }
+
+  /* Print styles */
+  @media print {
+    body {
+      margin: 0.5in;
+      color: black !important;
+      background: white !important;
+      font-size: 12pt;
+    }
+    details,
+    summary,
+    #reset-btn {
+      display: none;
+    }
+    input[type="checkbox"] {
+      display: inline-block !important;
+      margin-right: 0.4em !important;
+      transform: scale(1) !important;
+      vertical-align: middle;
+    }
+    /* Hide bullets in lists */
+    ul, ol {
+      list-style: none;
+      padding-left: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<h1>Italian Ragù Recipe & Shopping List (12 Portions)</h1>
+
+<details id="shopping-list" open>
+  <summary>Shopping List</summary>
+  <ul>
+    <li><strong>Meat (choose one combination):</strong></li>
+    <ul>
+      <li><input type="checkbox" id="shop-opt1" /> <label for="shop-opt1">Option 1: 1.5kg Svinebog (pork shoulder) + 1kg Høyrygg (beef chuck)</label></li>
+      <li><input type="checkbox" id="shop-opt2" /> <label for="shop-opt2">Option 2: 2kg Bibringe (beef short ribs)</label></li>
+      <li><input type="checkbox" id="shop-opt3" /> <label for="shop-opt3">O
