@@ -1,266 +1,501 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Italian Ragù Recipe & Shopping List</title>
-<style>
-  /* Reset & base */
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    margin: 1em 1.5em 3em;
-    background: white;
-    color: #222;
-  }
-  @media (prefers-color-scheme: dark) {
-    body {
-      background: #121212;
-      color: #ddd;
-    }
-    summary::-webkit-details-marker {
-      color: #ddd;
-    }
-  }
-
-  h1 {
-    margin-bottom: 0.3em;
-  }
-
-  /* Collapsible styling */
-  details {
-    margin-bottom: 1.3em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 0.6em 1em;
-    background: #f9f9f9;
-  }
-  @media (prefers-color-scheme: dark) {
-    details {
-      background: #222;
-      border-color: #555;
-    }
-  }
-  details[open] {
-    background: #e9ecef;
-  }
-  @media (prefers-color-scheme: dark) {
-    details[open] {
-      background: #333;
-    }
-  }
-
-  summary {
-    font-weight: bold;
-    font-size: 1.2em;
-    cursor: pointer;
-    outline-offset: 2px;
-  }
-  summary::-webkit-details-marker {
-    font-size: 1.3em;
-  }
-
-  /* Shopping List checkboxes: no bullets */
-  #shopping-list ul,
-  #shopping-list ol {
-    list-style: none;
-    padding-left: 0;
-    margin-left: 0;
-  }
-  #shopping-list li {
-    margin-bottom: 0.2em;
-  }
-  #shopping-list input[type="checkbox"] {
-    margin-right: 0.6em;
-    transform: scale(1.1);
-    vertical-align: middle;
-  }
-
-  /* Instructions list */
-  #instructions ol {
-    padding-left: 1.5em;
-  }
-  #instructions li {
-    margin-bottom: 0.45em;
-    display: flex;
-    align-items: center;
-  }
-  #instructions input[type="checkbox"] {
-    margin-right: 0.7em;
-    transform: scale(1.2);
-    flex-shrink: 0;
-  }
-  #instructions label {
-    flex-grow: 1;
-  }
-
-  /* Number alignment fix on mobile for instructions */
-  @media (max-width: 600px) {
-    #instructions ol {
-      padding-left: 2.2em;
-    }
-    #instructions li {
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  /* Phase headings inside instructions: bold, bigger, no checkbox */
-  #instructions .phase-heading {
-    font-weight: bold;
-    font-size: 1.1em;
-    margin-top: 1em;
-    margin-bottom: 0.4em;
-  }
-
-  /* Related links list */
-  #related-links ul {
-    padding-left: 1.2em;
-  }
-  #related-links li {
-    margin-bottom: 0.3em;
-  }
-  #related-links input[type="checkbox"] {
-    margin-right: 0.6em;
-    transform: scale(1.1);
-    vertical-align: middle;
-  }
-
-  /* Reset button styling */
-  #reset-btn {
-    display: block;
-    margin: 2em auto 0;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    border-radius: 6px;
-    border: 1.5px solid #0077cc;
-    background: #0077cc;
-    color: white;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.25s ease;
-  }
-  #reset-btn:hover,
-  #reset-btn:focus {
-    background: #005fa3;
-    border-color: #005fa3;
-    outline: none;
-  }
-
-  /* Print styles */
-  @media print {
-    body {
-      margin: 0.5in;
-      color: black !important;
-      background: white !important;
-      font-size: 12pt;
-    }
-    details,
-    summary,
-    #reset-btn {
-      display: none;
-    }
-    input[type="checkbox"] {
-      display: inline-block !important;
-      margin-right: 0.4em !important;
-      transform: scale(1) !important;
-      vertical-align: middle;
-    }
-    /* Hide bullets in lists */
-    ul, ol {
-      list-style: none;
-      padding-left: 0;
-    }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italian Ragù Recipe - Interactive Checklist</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        h1 {
+            color: #8B4513;
+            text-align: center;
+            border-bottom: 3px solid #8B4513;
+            padding-bottom: 10px;
+        }
+        
+        .section {
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f8f8f8;
+            padding: 15px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .section-header:hover {
+            background: #f0f0f0;
+        }
+        
+        .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+        
+        .section-content {
+            padding: 20px;
+            display: block;
+        }
+        
+        .section-content.collapsed {
+            display: none;
+        }
+        
+        .section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        
+        .meat-option {
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #8B4513;
+            border-radius: 4px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 8px 0;
+            padding: 5px;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 3px;
+            transform: scale(1.2);
+        }
+        
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .checklist-item.checked label {
+            text-decoration: line-through;
+            color: #888;
+        }
+        
+        .phase-header {
+            font-weight: bold;
+            color: #8B4513;
+            margin: 15px 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .reset-button {
+            background: #8B4513;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: background 0.3s ease;
+        }
+        
+        .reset-button:hover {
+            background: #A0522D;
+        }
+        
+        .reference-link {
+            color: #8B4513;
+            text-decoration: none;
+            border-bottom: 1px dotted #8B4513;
+        }
+        
+        .reference-link:hover {
+            border-bottom: 1px solid #8B4513;
+        }
+        
+        /* Print styles */
+        @media print {
+            .section-content {
+                display: block !important;
+            }
+            
+            .section {
+                border: none;
+                margin: 10px 0;
+            }
+            
+            .section-header {
+                background: none;
+                border-bottom: 2px solid #333;
+                cursor: default;
+            }
+            
+            .toggle-icon {
+                display: none;
+            }
+            
+            .reset-button {
+                display: none;
+            }
+            
+            input[type="checkbox"] {
+                -webkit-appearance: checkbox;
+                appearance: checkbox;
+            }
+            
+            input[type="checkbox"]:checked {
+                -webkit-appearance: checkbox;
+                appearance: checkbox;
+            }
+            
+            .checklist-item.checked label {
+                text-decoration: none;
+                color: #333;
+            }
+            
+            body {
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+            
+            h1 {
+                font-size: 18pt;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Italian Ragù Recipe & Shopping List (12 Portions)</h1>
-
-<details id="shopping-list" open>
-  <summary>Shopping List</summary>
-  <ul>
-    <li><strong>Meat (choose one combination):</strong></li>
-    <ul>
-      <li><input type="checkbox" id="shop-opt1" /> <label for="shop-opt1">Option 1: 1.5kg Svinebog (pork shoulder) + 1kg Høyrygg (beef chuck)</label></li>
-      <li><input type="checkbox" id="shop-opt2" /> <label for="shop-opt2">Option 2: 2kg Bibringe (beef short ribs)</label></li>
-      <li><input type="checkbox" id="shop-opt3" /> <label for="shop-opt3">Option 3: 1.2kg Svinebog + 800g Lammebog (lamb shoulder)</label></li>
-    </ul>
-    <li><strong>Vegetables & Aromatics:</strong></li>
-    <ul>
-      <li><input type="checkbox" id="shop-onions" /> <label for="shop-onions">3 large onions (450g)</label></li>
-      <li><input type="checkbox" id="shop-carrots" /> <label for="shop-carrots">4 large carrots (400g)</label></li>
-      <li><input type="checkbox" id="shop-celery" /> <label for="shop-celery">4 stalks celery (200g)</label></li>
-      <li><input type="checkbox" id="shop-pancetta" /> <label for="shop-pancetta">200g pancetta or bacon</label></li>
-      <li><input type="checkbox" id="shop-garlic" /> <label for="shop-garlic">1 head garlic</label></li>
-      <li><input type="checkbox" id="shop-bay" /> <label for="shop-bay">Fresh bay leaves (6-8 leaves)</label></li>
-      <li><input type="checkbox" id="shop-herbs" /> <label for="shop-herbs">Fresh thyme or rosemary</label></li>
-    </ul>
-    <li><strong>Pantry Items:</strong></li>
-    <ul>
-      <li><input type="checkbox" id="shop-milk" /> <label for="shop-milk">200ml whole milk</label></li>
-      <li><input type="checkbox" id="shop-wine" /> <label for="shop-wine">400ml dry white wine</label></li>
-      <li><input type="checkbox" id="shop-stock" /> <label for="shop-stock">800ml beef or vegetable stock</label></li>
-      <li><input type="checkbox" id="shop-tomatoes" /> <label for="shop-tomatoes">800g canned San Marzano tomatoes (or good quality whole tomatoes)</label></li>
-      <li><input type="checkbox" id="shop-paste" /> <label for="shop-paste">6 tbsp tomato paste (concentrated)</label></li>
-      <li><input type="checkbox" id="shop-oil" /> <label for="shop-oil">Extra virgin olive oil</label></li>
-      <li><input type="checkbox" id="shop-saltpepper" /> <label for="shop-saltpepper">Salt and black pepper</label></li>
-      <li><input type="checkbox" id="shop-parm" /> <label for="shop-parm">Parmigiano-Reggiano for serving</label></li>
-    </ul>
-  </ul>
-</details>
-
-<details id="instructions" >
-  <summary>Instructions</summary>
-  <ol>
-    <li><input type="checkbox" id="inst1" /> <label for="inst1">Cut meat into 3cm chunks (not minced)</label></li>
-    <li><input type="checkbox" id="inst2" /> <label for="inst2">Finely dice onions, carrots, celery (soffritto)</label></li>
-    <li><input type="checkbox" id="inst3" /> <label for="inst3">Dice pancetta</label></li>
-    <li><input type="checkbox" id="inst4" /> <label for="inst4">Crush tomatoes by hand</label></li>
-    <li><input type="checkbox" id="inst5" /> <label for="inst5">Measure out wine, milk, stock</label></li>
-
-    <li class="phase-heading" style="list-style:none; margin-top: 1.5em; font-weight: bold; font-size: 1.1em;">Phase 1: Build the Base (20 minutes)</li>
-
-    <li><input type="checkbox" id="inst6" /> <label for="inst6">Heat olive oil in heavy-bottomed pot</label></li>
-    <li><input type="checkbox" id="inst7" /> <label for="inst7">Brown meat chunks in batches (don't overcrowd)</label></li>
-    <li><input type="checkbox" id="inst8" /> <label for="inst8">Remove meat, set aside</label></li>
-    <li><input type="checkbox" id="inst9" /> <label for="inst9">Sauté pancetta until fat renders</label></li>
-    <li><input type="checkbox" id="inst10" /> <label for="inst10">Add soffritto, cook until softened (10 minutes)</label></li>
-
-    <li class="phase-heading" style="list-style:none; margin-top: 1.5em; font-weight: bold; font-size: 1.1em;">Phase 2: Build the Sauce (1-2 hours)</li>
-
-    <li><input type="checkbox" id="inst11" /> <label for="inst11">Return meat to pot</label></li>
-    <li><input type="checkbox" id="inst12" /> <label for="inst12">Add tomato paste, cook 2-3 minutes</label></li>
-    <li><input type="checkbox" id="inst13" /> <label for="inst13">Add wine, simmer until reduced by half</label></li>
-    <li><input type="checkbox" id="inst14" /> <label for="inst14">Add crushed tomatoes, stock, bay leaves, herbs</label></li>
-    <li><input type="checkbox" id="inst15" /> <label for="inst15">Simmer gently, partially covered, 1.5 to 2 hours</label></li>
-    <li><input type="checkbox" id="inst16" /> <label for="inst16">Add milk last 30 minutes, adjust salt and pepper</label></li>
-
-    <li class="phase-heading" style="list-style:none; margin-top: 1.5em; font-weight: bold; font-size: 1.1em;">Final Steps</li>
-
-    <li><input type="checkbox" id="inst17" /> <label for="inst17">Discard bay leaves and herbs</label></li>
-    <li><input type="checkbox" id="inst18" /> <label for="inst18">Serve ragù with fresh pasta or polenta</label></li>
-    <li><input type="checkbox" id="inst19" /> <label for="inst19">Top with Parmigiano-Reggiano</label></li>
-  </ol>
-</details>
-
-<details id="related-links" >
-  <summary>Related Links & Resources</summary>
-  <ul>
-    <li><input type="checkbox" id="link1" /> <label for="link1"><a href="https://www.lacucinaitaliana.com/recipe-classics/ragu-bolognese" target="_blank" rel="noopener">La Cucina Italiana: Ragù Bolognese</a></label></li>
-    <li><input type="checkbox" id="link2" /> <label for="link2"><a href="https://www.seriouseats.com/italian-meat-sauce-ragu-bolognese" target="_blank" rel="noopener">Serious Eats: The Secret to Ragù</a></label></li>
-    <li><input type="checkbox" id="link3" /> <label for="link3"><a href="https://www.greatitalianchefs.com/recipes/bolognese-ragu-recipe" target="_blank" rel="noopener">Great Italian Chefs: Ragù Recipe</a></label></li>
-  </ul>
-</details>
-
-<button id="reset-btn" aria-label="Reset all checkboxes">Reset All Checkboxes</button>
-
-<script>
-  // Reset all checkboxes when button clicked
-  document.getElementById('reset-btn').addEventListener('click', () => {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(cb => cb.checked = false);
-  });
-</script>
+    <h1>Italian Ragù Recipe & Shopping List</h1>
+    <p style="text-align: center; font-style: italic; color: #666;">12 Portions • 4-5 Hours Total Time</p>
+    
+    <!-- Ingredients Section (starts open) -->
+    <div class="section" id="ingredients-section">
+        <div class="section-header" onclick="toggleSection('ingredients')">
+            <span>🛒 Shopping List & Ingredients</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="section-content" id="ingredients-content">
+            <h3>Meat (choose one combination):</h3>
+            <div class="meat-option">
+                <div class="checklist-item">
+                    <input type="checkbox" id="meat1">
+                    <label for="meat1"><strong>Option 1:</strong> 1.5kg Svinebog (pork shoulder) + 1kg Høyrygg (beef chuck)</label>
+                </div>
+            </div>
+            <div class="meat-option">
+                <div class="checklist-item">
+                    <input type="checkbox" id="meat2">
+                    <label for="meat2"><strong>Option 2:</strong> 2kg Bibringe (beef short ribs)</label>
+                </div>
+            </div>
+            <div class="meat-option">
+                <div class="checklist-item">
+                    <input type="checkbox" id="meat3">
+                    <label for="meat3"><strong>Option 3:</strong> 1.2kg Svinebog + 800g Lammebog (lamb shoulder)</label>
+                </div>
+            </div>
+            
+            <h3>Vegetables & Aromatics:</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="veg1">
+                <label for="veg1">3 large onions (450g)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="veg2">
+                <label for="veg2">4 large carrots (400g)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="veg3">
+                <label for="veg3">4 stalks celery (200g)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="veg4">
+                <label for="veg4">200g pancetta or bacon</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="veg5">
+                <label for="veg5">1 head garlic</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="veg6">
+                <label for="veg6">Fresh bay leaves (6-8 leaves)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="veg7">
+                <label for="veg7">Fresh thyme or rosemary</label>
+            </div>
+            
+            <h3>Pantry Items:</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="pantry1">
+                <label for="pantry1">200ml whole milk</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="pantry2">
+                <label for="pantry2">400ml dry white wine</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="pantry3">
+                <label for="pantry3">800ml beef or vegetable stock</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="pantry4">
+                <label for="pantry4">800g canned San Marzano tomatoes</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="pantry5">
+                <label for="pantry5">6 tbsp tomato paste (concentrated)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="pantry6">
+                <label for="pantry6">Extra virgin olive oil</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="pantry7">
+                <label for="pantry7">Salt and black pepper</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="pantry8">
+                <label for="pantry8">Parmigiano-Reggiano for serving</label>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Prep Section (starts collapsed) -->
+    <div class="section collapsed" id="prep-section">
+        <div class="section-header" onclick="toggleSection('prep')">
+            <span>🔪 Preparation (30 minutes)</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="section-content collapsed" id="prep-content">
+            <div class="checklist-item">
+                <input type="checkbox" id="prep1">
+                <label for="prep1">Cut meat into 3cm chunks (not minced)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="prep2">
+                <label for="prep2">Finely dice onions, carrots, celery (soffritto)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="prep3">
+                <label for="prep3">Dice pancetta</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="prep4">
+                <label for="prep4">Crush tomatoes by hand</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="prep5">
+                <label for="prep5">Measure out wine, milk, stock</label>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cooking Section (starts collapsed) -->
+    <div class="section collapsed" id="cooking-section">
+        <div class="section-header" onclick="toggleSection('cooking')">
+            <span>🍳 Cooking Process (4-5 hours)</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="section-content collapsed" id="cooking-content">
+            <div class="phase-header">Phase 1: Build the Base (20 minutes)</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook1">
+                <label for="cook1">Heat olive oil in heavy-bottomed pot</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook2">
+                <label for="cook2">Brown meat chunks in batches (don't overcrowd)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook3">
+                <label for="cook3">Remove meat, set aside</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook4">
+                <label for="cook4">Sauté pancetta until fat renders</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook5">
+                <label for="cook5">Add soffritto, cook until softened (10 minutes)</label>
+            </div>
+            
+            <div class="phase-header">Phase 2: Deglaze & Combine (15 minutes)</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook6">
+                <label for="cook6">Add tomato paste, cook 2 minutes</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook7">
+                <label for="cook7">Return meat to pot</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook8">
+                <label for="cook8">Add milk, simmer until absorbed</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook9">
+                <label for="cook9">Add wine, simmer until reduced by half</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook10">
+                <label for="cook10">Add crushed tomatoes, bay leaves, herbs</label>
+            </div>
+            
+            <div class="phase-header">Phase 3: Long Braise (3-4 hours)</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook11">
+                <label for="cook11">Bring to gentle simmer</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook12">
+                <label for="cook12">Cover partially, cook very low heat</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook13">
+                <label for="cook13">Stir every 30 minutes</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook14">
+                <label for="cook14">Add stock gradually as needed</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook15">
+                <label for="cook15">Taste and adjust seasoning in final hour</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="cook16">
+                <label for="cook16">Sauce ready when meat shreds easily</label>
+            </div>
+            
+            <div class="phase-header">Final Check:</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="final1">
+                <label for="final1">Meat breaks into fibrous strands</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="final2">
+                <label for="final2">Sauce coats spoon but isn't dry</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="final3">
+                <label for="final3">Rich, deep color</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="final4">
+                <label for="final4">No raw wine taste</label>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Serving Section (starts collapsed) -->
+    <div class="section collapsed" id="serving-section">
+        <div class="section-header" onclick="toggleSection('serving')">
+            <span>🍝 Serving Notes</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="section-content collapsed" id="serving-content">
+            <div class="checklist-item">
+                <input type="checkbox" id="serve1">
+                <label for="serve1">Serve with fresh tagliatelle or pappardelle</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="serve2">
+                <label for="serve2">Top with grated Parmigiano-Reggiano</label>
+            </div>
+            <p><strong>Storage Notes:</strong></p>
+            <ul>
+                <li>Can be made 1-2 days ahead (improves flavor)</li>
+                <li>Freezes well for up to 3 months</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- References Section (starts collapsed) -->
+    <div class="section collapsed" id="references-section">
+        <div class="section-header" onclick="toggleSection('references')">
+            <span>📚 References</span>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="section-content collapsed" id="references-content">
+            <h3>Recipe Sources:</h3>
+            <ul>
+                <li><a href="https://www.greatitalianchefs.com/recipes/bolognese-ragu-recipe" class="reference-link">Great Italian Chefs - Authentic Bolognese Recipe</a></li>
+                <li><a href="https://www.pastagrammar.com/post/ragù-alla-bolognese-authentic-bolognese-sauce-recipe" class="reference-link">Pasta Grammar - Traditional Ragù</a></li>
+                <li><a href="https://anitalianinmykitchen.com/bolognese-sauce/" class="reference-link">An Italian in My Kitchen - Bolognese Sauce</a></li>
+            </ul>
+            
+            <h3>Norwegian Meat Cut Reference:</h3>
+            <ul>
+                <li><a href="https://www.matprat.no/oppdelingsguiden/norsk---engelsk---amerikansk-kjottordbok-/" class="reference-link">Matprat.no - Norwegian-English Meat Dictionary</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <button class="reset-button" onclick="resetAll()">🔄 Reset All Checkboxes & Collapse Sections</button>
+    
+    <script>
+        function toggleSection(sectionName) {
+            const section = document.getElementById(sectionName + '-section');
+            const content = document.getElementById(sectionName + '-content');
+            
+            section.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+        }
+        
+        // Add event listeners to checkboxes for visual feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const item = this.closest('.checklist-item');
+                    if (this.checked) {
+                        item.classList.add('checked');
+                    } else {
+                        item.classList.remove('checked');
+                    }
+                });
+            });
+        });
+        
+        function resetAll() {
+            // Reset all checkboxes
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.closest('.checklist-item').classList.remove('checked');
+            });
+            
+            // Collapse all sections except ingredients
+            const sections = ['prep', 'cooking', 'serving', 'references'];
+            sections.forEach(sectionName => {
+                const section = document.getElementById(sectionName + '-section');
+                const content = document.getElementById(sectionName + '-content');
+                section.classList.add('collapsed');
+                content.classList.add('collapsed');
+            });
+            
+            // Ensure ingredients section is open
+            const ingredientsSection = document.getElementById('ingredients-section');
+            const ingredientsContent = document.getElementById('ingredients-content');
+            ingredientsSection.classList.remove('collapsed');
+            ingredientsContent.classList.remove('collapsed');
+        }
+    </script>
 </body>
 </html>
